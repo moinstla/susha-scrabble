@@ -1,12 +1,14 @@
 require('sinatra')
 require('sinatra/reloader')
 require('pry')
+require('./lib/scrabble_score')
 
 get('/') do
-  erb(:form)
+  erb(:index)
 end
 
 get('/points') do
   @word = params.fetch('word')
-  erb(:scrabble_points)  
+  @points = params.fetch('word').scrabble()
+  erb(:scrabble_points)
 end
